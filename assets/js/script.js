@@ -2,7 +2,7 @@
 
 /* === getNumOfChars ===
 Prompts the user for the length of password they want and returns a number if valid.
-=== getCharTypes ===*/
+=== getNumOfChars ===*/
 function getNumOfChars() {
   let numOfChars; //# of characters in length the password should be
   let isValid; //Is the user response valid or not?
@@ -80,7 +80,7 @@ function generatePassword() {
   const lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
   const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const numeric = "123456789".split("");
-  const special = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
+  const special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".split("");
 
   let numOfChars; //# of characters in length the password should be
 
@@ -89,8 +89,8 @@ function generatePassword() {
   let index; //index to charCollection
 
   numOfChars = getNumOfChars();
-    //If user cancels exit
-    if (!numOfChars) {
+  //If user cancels exit
+  if (!numOfChars) {
     return;
   }
 
@@ -109,7 +109,8 @@ function generatePassword() {
   //If user cancels exit
   if (!charCollection) {
     return;
-  }charCollection = getCharTypes("special characters", charCollection, special);
+  }
+  charCollection = getCharTypes("special characters", charCollection, special);
   //If user cancels exit
   if (!charCollection) {
     return;
