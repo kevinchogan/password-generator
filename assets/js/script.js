@@ -25,7 +25,7 @@ function generatePassword() {
   let index; //index to charCollection
 
   do {
-    //Prompt the user of rthe number o characters to use.
+    //Prompt the user for the number of characters to use.
     numOfChars = window.prompt("How many characters in length would you like your password to be (8 to 128)?");
     // Exit if user cancels
     if (!numOfChars) {
