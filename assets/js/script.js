@@ -80,7 +80,7 @@ function generatePassword() {
   const lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
   const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const numeric = "123456789".split("");
-  const special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".split("");
+  const special = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
 
   let numOfChars; //# of characters in length the password should be
 
