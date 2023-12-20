@@ -9,7 +9,9 @@ function getNumOfChars() {
 
   do {
     //Prompt the user for the number of characters to use.
-    numOfChars = window.prompt("How many characters in length would you like your password to be (8 to 128)?");
+    numOfChars = window.prompt(
+      "How many characters in length would you like your password to be (8 to 128)?"
+    );
 
     // Exit if user cancels
     if (!numOfChars) {
@@ -29,7 +31,7 @@ function getNumOfChars() {
   } while (!isValid);
 
   //Returns the password length
-  return(numOfChars);
+  return numOfChars;
 }
 
 /* === getCharTypes ===
@@ -43,12 +45,14 @@ function getCharTypes(typeText, charCollection, includeCollection) {
   let isValid; //Is the user response valid or not?
 
   do {
-    response = window.prompt("Would you like to include " + typeText + "? (Y/N)");
+    response = window.prompt(
+      "Would you like to include " + typeText + "? (Y/N)"
+    );
     //If user cancels exit
     if (!response) {
       return;
     }
-    //Change response to ALLCAPS
+    //Change response to ALLCAPS to simplify validation logic
     response = response.toUpperCase();
 
     //Checks if response is yes or no, includes new collection if yes, and throws alert if not valid
@@ -85,12 +89,31 @@ function generatePassword() {
   let index; //index to charCollection
 
   numOfChars = getNumOfChars();
+    //If user cancels exit
+    if (!numOfChars) {
+    return;
+  }
 
   //Prompts for user to decide which character sets to use
   charCollection = getCharTypes("lowercase letters", charCollection, lowerCase);
+  //If user cancels exit
+  if (!charCollection) {
+    return;
+  }
   charCollection = getCharTypes("upperCase letters", charCollection, upperCase);
+  //If user cancels exit
+  if (!charCollection) {
+    return;
+  }
   charCollection = getCharTypes("numbers", charCollection, numeric);
-  charCollection = getCharTypes("special characters", charCollection, special);
+  //If user cancels exit
+  if (!charCollection) {
+    return;
+  }charCollection = getCharTypes("special characters", charCollection, special);
+  //If user cancels exit
+  if (!charCollection) {
+    return;
+  }
 
   //Builds the password using random number generator
   for (let i = 0; i < numOfChars; i++) {
