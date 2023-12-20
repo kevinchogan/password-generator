@@ -4,11 +4,11 @@
 Prompts the user for the length of password as well as the character sets to be used.  
 Returns a password that meets the user's conditions. */
 function generatePassword() {
-  //Defning sets of characters to be used to generate passwords
-  const lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-  const upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-  const numeric = ["0","1","2","3","4","5","6","7","8","9"];
-  const special = ["!","#","$","%","&","'","(",")","*","+",",","-",".","/",":"];
+  //Defining sets of characters to be used to generate passwords
+  const lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
+  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const numeric = "123456789".split("");
+  const special = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
   
   //# of character variables
   let isValid = true; //for error checking # of characters
