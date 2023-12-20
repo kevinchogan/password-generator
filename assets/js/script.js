@@ -1,32 +1,16 @@
 // Assignment code here
 
-/* generatePassword:
-Prompts the user for the length of password as well as the character sets to be used.  
-Returns a password that meets the user's conditions. */
-function generatePassword() {
-  //Defining sets of characters to be used to generate passwords
-  const lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
-  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const numeric = "123456789".split("");
-  const special = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
-  
-  //# of character variables
-  let isValid = true; //for error checking # of characters
+/* === getNumOfChars ===
+Prompts the user for the length of password they want and returns a number if valid.
+=== getCharTypes ===*/
+function getNumOfChars() {
   let numOfChars; //# of characters in length the password should be
-  
-  //Should we use characters set?
-  let isLC; //lowercase
-  let isUC; //uppercase
-  let isNum; //numbers
-  let isSpecial; //special characters
-  
-  let charCollection = []; //will contain all valid characters
-  let newPass= ""; //will contain new password to be returned
-  let index; //index to charCollection
+  let isValid; //Is the user response valid or not?
 
   do {
     //Prompt the user for the number of characters to use.
     numOfChars = window.prompt("How many characters in length would you like your password to be (8 to 128)?");
+
     // Exit if user cancels
     if (!numOfChars) {
       return;
@@ -44,35 +28,78 @@ function generatePassword() {
     //Continue loop until user input is in range
   } while (!isValid);
 
-  //Prompts for user to decide which character sets to use
-  isLC = window.confirm("Would you like to use lowercase letters?");
-  isUC = window.confirm("Would you like to use uppercase letters?");
-  isNum = window.confirm("Would you like to use numbers?");
-  isSpecial = window.confirm("Would you like to use special characters (e.g. '$', '%', '/', etc.?");
-
-  //Add character sets to uber collection if use requests
-  if (isLC) {
-    charCollection = charCollection.concat(lowerCase);
-  }; 
-  if (isUC) {
-    charCollection = charCollection.concat(upperCase);
-  };
-  if (isNum) {
-    charCollection = charCollection.concat(numeric);
-  }; 
-  if (isSpecial) {
-    charCollection = charCollection.concat(special);
-  };
-  
-  //Builds the password using random number generator
-  for(let i = 0; i < numOfChars; i++) {
-    index = Math.floor(Math.random() * charCollection.length);
-    newPass = newPass + charCollection[index]
-  };
-  //Return password
-  return (newPass);
+  //Returns the password length
+  return(numOfChars);
 }
 
+/* === getCharTypes ===
+Prompts the user for whether to include a character collection or not and returns the revised character collection
+typeText:          The type of characters in string for used in the user prompt.
+charCollection:    The character collection to potentially be added to.
+includeCollection: The character collection that may be added to charCOllection.
+=== getCharTypes ===*/
+function getCharTypes(typeText, charCollection, includeCollection) {
+  let response; //the user response
+  let isValid; //Is the user response valid or not?
+
+  do {
+    response = window.prompt("Would you like to include " + typeText + "? (Y/N)");
+    //If user cancels exit
+    if (!response) {
+      return;
+    }
+    //Change response to ALLCAPS
+    response = response.toUpperCase();
+
+    //Checks if response is yes or no, includes new collection if yes, and throws alert if not valid
+    if (response === "Y" || response === "YES") {
+      isValid = true;
+      charCollection = charCollection.concat(includeCollection);
+    } else if (response === "N" || response === "NO") {
+      isValid = true;
+    } else {
+      isValid = false;
+      window.alert("Please respond with a 'Y' or 'N'.");
+    }
+  } while (!isValid);
+
+  //Returns the original collection if no and revised one if yes
+  return charCollection;
+}
+
+/* === generatePassword ===
+Prompts the user for the length of password as well as the character sets to be used.  
+Returns a password that meets the user's conditions. 
+=== generatePassword ===*/
+function generatePassword() {
+  //Defining sets of characters to be used to generate passwords
+  const lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
+  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const numeric = "123456789".split("");
+  const special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".split("");
+
+  let numOfChars; //# of characters in length the password should be
+
+  let charCollection = []; //will contain all valid characters
+  let newPass = ""; //will contain new password to be returned
+  let index; //index to charCollection
+
+  numOfChars = getNumOfChars();
+
+  //Prompts for user to decide which character sets to use
+  charCollection = getCharTypes("lowercase letters", charCollection, lowerCase);
+  charCollection = getCharTypes("upperCase letters", charCollection, upperCase);
+  charCollection = getCharTypes("numbers", charCollection, numeric);
+  charCollection = getCharTypes("special characters", charCollection, special);
+
+  //Builds the password using random number generator
+  for (let i = 0; i < numOfChars; i++) {
+    index = Math.floor(Math.random() * charCollection.length);
+    newPass = newPass + charCollection[index];
+  }
+  //Return password
+  return newPass;
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
