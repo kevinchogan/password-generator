@@ -36,9 +36,9 @@ function getNumOfChars() {
 
 /* === getCharTypes ===
 Prompts the user for whether to include a character collection or not and returns the revised character collection
-typeText:          The type of characters in string for used in the user prompt.
+typeText:          The type of characters (lowercase, uppercase, etc.) in string format for use in the user prompt.
 charCollection:    The character collection to potentially be added to.
-includeCollection: The character collection that may be added to charCOllection.
+includeCollection: The character collection that may be added to charCollection.
 === getCharTypes ===*/
 function getCharTypes(typeText, charCollection, includeCollection) {
   let response; //the user response

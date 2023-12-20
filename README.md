@@ -13,7 +13,7 @@ N/A
 
 ## Usage
 
-* Click on "Generate Password.
+* Click on "Generate Password".
 * Choose the password length (between 8 and 128 characters).
 * Choose whether or not to include lowercase letters.
 * Choose whether or not to include uppercase letters.
