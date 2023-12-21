@@ -1,5 +1,3 @@
-// Assignment code here
-
 /* === getNumOfChars ===
 Prompts the user for the length of password they want and returns a number if valid.
 === getNumOfChars ===*/
@@ -33,6 +31,7 @@ function getNumOfChars() {
   //Returns the password length
   return numOfChars;
 }
+
 
 /* === getCharTypes ===
 Prompts the user for whether to include a character collection or not and returns the revised character collection
@@ -71,6 +70,7 @@ function getCharTypes(typeText, charCollection, includeCollection) {
   return charCollection;
 }
 
+
 /* === generatePassword ===
 Prompts the user for the length of password as well as the character sets to be used.  
 Returns a password that meets the user's conditions. 
@@ -87,6 +87,9 @@ function generatePassword() {
   let charCollection = []; //will contain all valid characters
   let newPass = ""; //will contain new password to be returned
   let index; //index to charCollection
+
+  var passwordCard = document.querySelector("card-body");
+
 
   numOfChars = getNumOfChars();
   //If user cancels exit
@@ -125,6 +128,10 @@ function generatePassword() {
   return newPass;
 }
 
+
+/* === Main Script ===
+On button press calls the password generator.
+=== Main Script ===*/
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -132,10 +139,13 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  
   //Check if password has been defined before updating web page
   if (password !== undefined) {
     passwordText.value = password;
+  } else {
+    //Clears password if action cancelled
+    passwordText.value = "" 
   }
 }
 
