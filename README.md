@@ -1,7 +1,7 @@
-# module-03
+# password-generator
 Password Generator  
 <img src="./assets/images/Capture.PNG" alt="Image of a password generating website" width=500px>  
-[Password Generator Website](https://kevinchogan.github.io/module-03/)
+[Password Generator Website](https://kevinchogan.github.io/password-generator/)
 
 ## Description
 
